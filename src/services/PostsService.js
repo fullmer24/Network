@@ -1,15 +1,14 @@
 import { AppState } from "../AppState.js"
 import { Post } from "../models/Post.js"
+import { logger } from "../utils/Logger.js"
 import { bcwSandbox } from "./AxiosService.js"
 
 class PostsService {
-    async getPosts(page = 1) {
-        const res = await bcwSandbox.get('api/posts', {
-            params: {
-                page: page
-            }
-        })
+    async getPosts() {
+        const res = await bcwSandbox.get('api/posts')
+        logger.log("post data", res.data)
         AppState.posts = res.data.posts.map(p => new Post(p))
+        // save the newer and older posts urls in the appstate
         AppState.page = res.data.page
     }
 
@@ -38,6 +37,8 @@ class PostsService {
         const res = await bcwSandbox.delete(`api/posts/${postId}`)
         AppState.posts = AppState.posts.filter(p => p.id != postId)
     }
+
+    // changepage function()
 }
 
 export const postsService = new PostsService()
