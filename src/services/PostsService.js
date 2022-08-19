@@ -1,17 +1,21 @@
-const { AppState } = require("../AppState.js")
-const { Post } = require("../models/Post.js")
-const { logger } = require("../utils/Logger.js")
-const { bcwSandbox } = require("./AxiosService.js")
+import { AppState } from "../AppState.js"
+import { Post } from "../models/Post.js"
+import { logger } from "../utils/Logger.js"
+import { bcwSandbox } from "./AxiosService.js"
 
 class PostsService {
-    async getPosts() {
-        const res = await bcwSandbox.get('api/post')
-        logger.log(res.data)
-        AppState.posts = res.data.map(p => new Post(p))
+    async getPosts(page = 1) {
+        const res = await bcwSandbox.get('api/posts', {
+            params: {
+                page: page
+            }
+        })
+        AppState.posts = res.data.posts.map(p => new Post(p))
+        AppState.page = res.data.page
     }
 
     async getPostsByCreatorId(creatorId) {
-        const res = await bcwSandbox.get('api/post', {
+        const res = await bcwSandbox.get('api/posts', {
             params: {
                 creatorId
             }
@@ -20,19 +24,19 @@ class PostsService {
     }
 
     async createPost(postData) {
-        const res = await bcwSandbox.post('/api/post', postData)
+        const res = await bcwSandbox.post('/api/posts', postData)
         let post = new Post(res.data)
         AppState.posts = [...AppState.posts, post]
     }
 
     async editPost(postData) {
-        const res = await bcwSandbox.put(`api/post/${postData.id}`, postData)
+        const res = await bcwSandbox.put(`api/posts/${postData.id}`, postData)
         const index = AppState.post.findIndex(p => p.id == postData.id)
         AppState.posts.slice(index, 1, new Post(res.data))
     }
 
     async deletePost(postId) {
-        const res = await bcwSandbox.delete(`api/post/${postId}`)
+        const res = await bcwSandbox.delete(`api/posts/${postId}`)
         AppState.posts = AppState.posts.filter(p => p.id != postId)
     }
 }

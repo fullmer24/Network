@@ -8,6 +8,12 @@
         <PostCard :post="p" />
       </div>
     </div>
+    <div class="d-flex justify-content-around my-3">
+      <button class="btn btn-info" @click="getPosts(prevPage)" v-if="prevPage > 0">
+        Previous
+      </button>
+      <button class="btn btn-info" @click="getPosts(nextPage)">Next</button>
+    </div>
   </div>
 </template>
 
@@ -26,9 +32,9 @@ import Pop from '../utils/Pop.js';
 
 export default {
   setup() {
-    async function getPosts() {
+    async function getPosts(page) {
       try {
-        await postsService.getPosts()
+        await postsService.getPosts(page)
       } catch (error) {
         logger.error('Getting posts', error)
         Pop.error(error)
@@ -38,7 +44,10 @@ export default {
       getPosts()
     })
     return {
-      posts: computed(() => AppState.posts)
+      posts: computed(() => AppState.posts),
+      nextPage: computed(() => AppState.page + 1),
+      prevPage: computed(() => AppState.page - 1),
+      getPosts
     };
   },
 };
