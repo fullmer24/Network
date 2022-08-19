@@ -12,9 +12,10 @@ const routes = [
     component: loadPage('HomePage')
   },
   {
-    path: '/about',
-    name: 'About',
-    component: loadPage('AboutPage')
+    // TODO add /:profileId
+    path: '/profile',
+    name: 'Profile',
+    component: loadPage('ProfilePage')
   },
   {
     path: '/account',
