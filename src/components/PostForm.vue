@@ -1,7 +1,7 @@
 <template>
     <form @submit.prevent="handleSubmit">
         <p>Make a Post</p>
-        <input type="text" placeholder="post" v-model="editable.post" />
+        <input type="text" placeholder="Whats going on?" v-model="editable.body" />
         <input type="text" placeholder="image url" v-model="editable.img" />
         <button class="btn btn-primary">{{ editable.id ? 'Save' : 'Create' }}</button>
     </form>
@@ -28,9 +28,11 @@ export default {
                     if (editable.value.id) {
                         await postsService.editPost(editable.value)
                         Pop.success('Post edited')
+                        editable.value = {};
                     } else {
                         await postsService.createPost(editable.value)
                         Pop.success('Post created')
+                        editable.value = {};
                     }
                     editable.value
                 } catch (error) {
@@ -39,6 +41,7 @@ export default {
                 }
             }
         };
+
     },
 };
 </script>

@@ -22,9 +22,8 @@ class PostsService {
     }
 
     async createPost(postData) {
-        const res = await bcwSandbox.post('/api/posts', postData)
-        let post = new Post(res.data)
-        AppState.posts = [...AppState.posts, post]
+        const res = await bcwSandbox.post('api/posts', postData)
+        AppState.posts.push(new Post(res.data))
     }
 
     async editPost(postData) {
