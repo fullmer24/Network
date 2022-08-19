@@ -1,6 +1,5 @@
 import { AppState } from "../AppState.js"
 import { Post } from "../models/Post.js"
-import { logger } from "../utils/Logger.js"
 import { bcwSandbox } from "./AxiosService.js"
 
 class PostsService {
