@@ -8,8 +8,8 @@ class PostsService {
         const res = await bcwSandbox.get('api/posts')
         logger.log("post data", res.data)
         AppState.posts = res.data.posts.map(p => new Post(p))
-        // save the newer and older posts urls in the appstate
-        AppState.page = res.data.page
+        AppState.nextPage = res.data.older
+        AppState.prevPage = res.data.newer
     }
 
     async getPostsByCreatorId(creatorId) {

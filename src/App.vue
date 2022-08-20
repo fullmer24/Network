@@ -1,5 +1,6 @@
 <template>
   <header>
+    <b class="container-fluid bg-dark text-primary p-3">The Network</b>
     <Navbar />
   </header>
   <main>

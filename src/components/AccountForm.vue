@@ -7,12 +7,28 @@
             </div>
             <div>
                 <label for="picture">Picture:</label>
-                <input type="url" class="form-control" v-model="editable.picture" required name="picture"
+                <input type="string" class="form-control" v-model="editable.picture" required name="picture"
                     placeholder="picture">
             </div>
             <div>
                 <label for="coverImg">Cover Image:</label>
                 <input type="url" class="form-control" v-model="editable.coverImg" required name="coverImg">
+            </div>
+            <div>
+                <label for="coverImg">Email:</label>
+                <input type="string" class="form-control" v-model="editable.email" required name="email">
+            </div>
+            <div>
+                <label for="coverImg">GitHub:</label>
+                <input type="string" class="form-control" v-model="editable.github" name="github">
+            </div>
+            <div>
+                <label for="coverImg">linkedin:</label>
+                <input type="string" class="form-control" v-model="editable.linkedin" name="linkedin">
+            </div>
+            <div>
+                <label for="coverImg">Class:</label>
+                <input type="string" class="form-control" v-model="editable.class" required name="class">
             </div>
             <div>
                 <label for="bio">Bio:</label>
