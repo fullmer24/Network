@@ -37,7 +37,13 @@ class PostsService {
         AppState.posts = AppState.posts.filter(p => p.id != postId)
     }
 
-    // changepage function()
+    async changePage(url) {
+        const res = await bcwSandbox.get(url)
+        logger.log(res.data)
+        AppState.posts = res.data.posts
+        AppState.nextPage = res.data.older
+        AppState.previousPage = res.data.newer
+    }
 }
 
 export const postsService = new PostsService()

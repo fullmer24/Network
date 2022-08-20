@@ -9,11 +9,9 @@
       </div>
     </div>
     <div class="d-flex justify-content-around my-3">
-      <!-- send in the url saved in the appstate -->
       <button class="btn btn-info" @click="changePage(prevPage)" v-if="prevPage > 0">
         Previous
       </button>
-      <!-- send url saved in appstate -->
       <button class="btn btn-info" @click="changePage(nextPage)">Next</button>
     </div>
   </div>
@@ -33,6 +31,7 @@ import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 
 export default {
+  name: "home",
   setup() {
     async function getPosts(page) {
       try {
@@ -47,12 +46,16 @@ export default {
     })
     return {
       posts: computed(() => AppState.posts),
-      // point to next and prev page in the appstate
-      nextPage: computed(() => AppState.page + 1),
-      prevPage: computed(() => AppState.page - 1),
+      nextPage: computed(() => AppState.nextPage),
+      prevPage: computed(() => AppState.prevPage),
       getPosts,
-      async changePage() {
-        // call to a 'changepage' function in the service that will re 'get' the posts and pages
+      async changePage(url) {
+        try {
+          await postsService.changePage(url)
+        } catch (error) {
+          logger.error(`changing page on homepage`, error)
+          Pop.error(error)
+        }
       }
     };
   },

@@ -7,5 +7,7 @@ export class Post {
         this.likeIds = data.likeIds || ''
         this.creator = data.creator || {}
         this.createdAt = data.createdAt
+        this.nextPage = data.older
+        this.prevPage = data.newer
     }
 }
