@@ -1,5 +1,5 @@
 <template>
-    <div class="post-card card selectable">
+    <div class="post-card card">
         <div class="card-body">
             <div class="post-creator" v-if="post.creator">
                 <router-link :to="{ name: 'Profile', params: { profileId: post.creator.id } }">
@@ -19,6 +19,9 @@
                 </div>
                 <div v-if="post.creator.id == account.id">
                     <button @click="deletePost">Delete</button>
+                </div>
+                <div>
+                    <i class="mdi mdi-heart selectable">{{}}</i>
                 </div>
             </div>
         </div>
