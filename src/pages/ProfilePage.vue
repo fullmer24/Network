@@ -1,6 +1,8 @@
 <template>
   <div class="right-bar p-2 bar">
-    <ContentCard />
+    <div v-for="p in posts" :key="p.id">
+      <ContentCard :post="m" />
+    </div>div>
     <p>test</p>
   </div>
   <div class="profile-page" v-if="profile">

@@ -21,7 +21,9 @@
                     <button @click="deletePost">Delete</button>
                 </div>
                 <div>
-                    <!-- <i class="mdi mdi-heart selectable">{{posts.likes.length}}</i> -->
+                    <i class="mdi mdi-heart selectable">
+                        <!-- {{posts.likes.length}} -->
+                    </i>
                 </div>
             </div>
         </div>

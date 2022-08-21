@@ -1,14 +1,11 @@
 <template>
     <div class="Content-card card">
         <div class="card-body">
-            <img :src="content" alt="" height="100">
+            <img :src="content.square" alt="" height="100">
+            {{ content.square }}
         </div>
     </div>
 </template>
-
-
-
-
 
 <script>
 import { computed } from '@vue/reactivity';
@@ -23,7 +20,6 @@ export default {
         content: { type: Content, required: true }
     },
     setup() {
-
         async function getContent() {
             try {
                 await contentsService.getContent()
@@ -33,8 +29,6 @@ export default {
             }
         }
         getContent()
-
-
         return {
             content: computed(() => AppState.content),
             getContent,

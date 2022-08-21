@@ -13,10 +13,10 @@
       </div>
     </div>
     <div class="d-flex justify-content-around my-3">
-      <button class="btn btn-info" @click="changePage(prevPage)" v-if="prevPage > 0">
+      <button class="btn btn-info" @click="changePage(previousPage)" :disabled="!prevPage">
         Previous
       </button>
-      <button class="btn btn-info" @click="changePage(nextPage)">Next</button>
+      <button class="btn btn-info" @click="changePage(nextPage)" :disabled="!nextPage">Next</button>
     </div>
   </div>
 
@@ -54,7 +54,7 @@ export default {
     return {
       posts: computed(() => AppState.posts),
       nextPage: computed(() => AppState.nextPage),
-      prevPage: computed(() => AppState.prevPage),
+      prevPage: computed(() => AppState.previousPage),
       getPosts,
       async changePage(url) {
         try {

@@ -10,7 +10,7 @@ class ContentsService {
     async getContent() {
         const res = await bcwSandbox.get('api/ads')
         logger.log("content data", res.data)
-        AppState.content = res.data.content
+        AppState.content = res.data
     }
 }
 
