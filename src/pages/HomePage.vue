@@ -1,6 +1,8 @@
 <template>
-  <div class="right-bar p-2 bar">
-    <ContentCard />
+  <div class="left-bar p-2 bar">
+    <div v-for="c in content" :key="c.id">
+      <ContentCard :content="c" />
+    </div>
     <p>test</p>
   </div>
   <div class="container">

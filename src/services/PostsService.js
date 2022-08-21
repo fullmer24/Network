@@ -18,7 +18,8 @@ class PostsService {
                 creatorId
             }
         })
-        AppState.profilePosts = res.data.map(p => new Post(p))
+        AppState.profilePosts = new Post(p => res.data.find)
+        // res.data.find or filter (p => new Post(p))
     }
 
     async createPost(postData) {

@@ -1,7 +1,7 @@
 <template>
   <div class="right-bar p-2 bar">
-    <div v-for="p in posts" :key="p.id">
-      <ContentCard :post="m" />
+    <div v-for="c in content" :key="c.id">
+      <ContentCard :content="c" />
     </div>div>
     <p>test</p>
   </div>
