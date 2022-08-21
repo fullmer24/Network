@@ -6,7 +6,7 @@ import { bcwSandbox } from "./AxiosService.js"
 class PostsService {
     async getPosts() {
         const res = await bcwSandbox.get('api/posts')
-        logger.log("post data", res.data)
+        // logger.log("post data", res.data)
         AppState.posts = res.data.posts.map(p => new Post(p))
         AppState.nextPage = res.data.older
         AppState.prevPage = res.data.newer

@@ -1,4 +1,8 @@
 <template>
+  <div class="right-bar p-2 bar">
+    <ContentCard />
+    <p>test</p>
+  </div>
   <div class="profile-page" v-if="profile">
     <div class="cover-img">
       <div class="position-absolute " style="right:0" v-if="profile.id == account.id">
@@ -56,6 +60,14 @@ export default {
         Pop.error(error);
       }
     }
+    async function getPosts(page) {
+      try {
+        await postsService.getPosts(page)
+      } catch (error) {
+        logger.error('Getting posts', error)
+        Pop.error(error)
+      }
+    }
     async function getProfileById() {
       try {
         await profilesService.getProfileById(route.params.profileId);
@@ -67,6 +79,7 @@ export default {
       }
     }
     onMounted(() => {
+      getPosts();
       getProfileById();
       getPostsByCreatorId();
     });
@@ -83,6 +96,7 @@ export default {
           Pop.error(error)
         }
       }
+
     };
   },
   components: { PostCard }

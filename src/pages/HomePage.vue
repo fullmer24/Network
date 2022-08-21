@@ -1,10 +1,14 @@
 <template>
+  <div class="right-bar p-2 bar">
+    <ContentCard />
+    <p>test</p>
+  </div>
   <div class="container">
     <div class="row">
-      <div class="col-md-10">
+      <div class="col-md-7">
         <PostForm />
       </div>
-      <div class="col-md-10" v-for="p in posts" :key="p.id">
+      <div class="col-md-7" v-for="p in posts" :key="p.id">
         <PostCard :post="p" />
       </div>
     </div>
@@ -15,6 +19,7 @@
       <button class="btn btn-info" @click="changePage(nextPage)">Next</button>
     </div>
   </div>
+
 </template>
 
 
@@ -29,21 +34,23 @@ import { AppState } from '../AppState.js';
 import { postsService } from '../services/PostsService.js';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
+import ContentCard from '../components/ContentCard.vue';
 
 export default {
   name: "home",
   setup() {
     async function getPosts(page) {
       try {
-        await postsService.getPosts(page)
-      } catch (error) {
-        logger.error('Getting posts', error)
-        Pop.error(error)
+        await postsService.getPosts(page);
+      }
+      catch (error) {
+        logger.error("Getting posts", error);
+        Pop.error(error);
       }
     }
     onMounted(() => {
-      getPosts()
-    })
+      getPosts();
+    });
     return {
       posts: computed(() => AppState.posts),
       nextPage: computed(() => AppState.nextPage),
@@ -51,16 +58,22 @@ export default {
       getPosts,
       async changePage(url) {
         try {
-          await postsService.changePage(url)
-        } catch (error) {
-          logger.error(`changing page on homepage`, error)
-          Pop.error(error)
+          await postsService.changePage(url);
+        }
+        catch (error) {
+          logger.error(`changing page on homepage`, error);
+          Pop.error(error);
         }
       }
     };
   },
+  components: { ContentCard }
 };
 </script>
 
-<style >
+<style lang="scss" scoped>
+// .bar {
+//   height: 100vh;
+//   width: auto;
+// }
 </style>
