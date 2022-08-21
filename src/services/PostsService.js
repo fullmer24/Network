@@ -44,6 +44,15 @@ class PostsService {
         AppState.nextPage = res.data.older
         AppState.previousPage = res.data.newer
     }
+
+    async searchPosts(searchTerm) {
+        const res = await bcwSandbox.get('/search/posts', {
+            params: {
+                query: searchTerm
+            }
+        })
+        AppState.posts = res.data.posts.map(p => new Post(p))
+    }
 }
 
 export const postsService = new PostsService()

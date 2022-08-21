@@ -9,5 +9,6 @@ export class Post {
         this.createdAt = data.createdAt
         this.nextPage = data.older
         this.prevPage = data.newer
+        this.likes = data.likeIds
     }
 }
