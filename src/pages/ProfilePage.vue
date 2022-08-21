@@ -52,7 +52,7 @@ export default {
         await postsService.getPostsByCreatorId(route.params.profileId);
       }
       catch (error) {
-        logger.error("[GettingProfilePosts]", error);
+        logger.error("[Getting profile posts]", error);
         Pop.error(error);
       }
     }
