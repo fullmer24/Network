@@ -3,7 +3,7 @@
     <div v-for="c in content" :key="c.id">
       <ContentCard :content="c" />
     </div>
-    <p>test</p>
+    <!-- <p>test</p> -->
   </div>
   <div class="container">
     <div class="row">

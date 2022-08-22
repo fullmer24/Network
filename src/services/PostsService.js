@@ -14,7 +14,8 @@ class PostsService {
     async getPostsByCreatorId(creatorId) {
         const res = await bcwSandbox.get('api/profiles/' + creatorId + '/Posts')
         AppState.posts = res.data.posts.map(p => new Post(p))
-        console.log(AppState.posts)
+        AppState.nextPage = res.data.older
+        AppState.prevPage = res.data.newer
     }
 
     async createPost(postData) {

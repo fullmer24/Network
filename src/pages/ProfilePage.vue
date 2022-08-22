@@ -3,7 +3,7 @@
     <div v-for="c in content" :key="c.id">
       <ContentCard :content="c" />
     </div>
-    <p>test</p>
+    <!-- <p>test</p> -->
   </div>
   <div class="profile-page" v-if="profile">
     <div class="cover-img">
@@ -77,6 +77,8 @@ export default {
     return {
       account: computed(() => AppState.account),
       profile: computed(() => AppState.activeProfile),
+      nextPage: computed(() => AppState.nextPage),
+      prevPage: computed(() => AppState.previousPage),
       cover: computed(() => `url(${AppState.activeProfile?.coverImg || "https://cdn.pixabay.com/photo/2017/07/16/17/33/background-2509983_1280.jpg"})`),
       posts: computed(() => AppState.posts),
       async changePage(url) {
