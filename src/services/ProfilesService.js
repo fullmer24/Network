@@ -8,6 +8,15 @@ class ProfilesService {
         const res = await bcwSandbox.get(`api/profiles/${id}`)
         AppState.activeProfile = new Profile(res.data)
     }
+    async getPostByCreatorId(id) {
+        console.log(id);
+        const res = await bcwSandbox.get(`api/profiles/${id}/posts`)
+        console.log(res);
+        AppState.profilePosts = new Post(res.data)
+    }
+
+
+
 }
 
 

@@ -15,7 +15,7 @@
       </div>
     </div>
     <div class="d-flex justify-content-around my-3">
-      <button class="btn btn-info" @click="changePage(previousPage)" :disabled="!prevPage">
+      <button class="btn btn-info" @click="changePage(prevPage)" :disabled="!prevPage">
         Previous
       </button>
       <button class="btn btn-info" @click="changePage(nextPage)" :disabled="!nextPage">Next</button>

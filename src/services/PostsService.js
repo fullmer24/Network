@@ -13,12 +13,10 @@ class PostsService {
     }
 
     async getPostsByCreatorId(creatorId) {
-        const res = await bcwSandbox.get('api/posts', {
-            params: {
-                creatorId
-            }
-        })
-        AppState.profilePosts = new Post(p => res.data.find)
+        const res = await bcwSandbox.get('api/profiles/' + creatorId + '/Posts')
+        // console.log(res.data)
+        AppState.posts = res.data.posts.map(p => new Post(p))
+        console.log(AppState.posts)
         // res.data.find or filter (p => new Post(p))
     }
 
@@ -33,9 +31,10 @@ class PostsService {
         AppState.posts.slice(index, 1, new Post(res.data))
     }
 
-    async deletePost(postId) {
-        const res = await bcwSandbox.delete(`api/posts/${postId}`)
-        AppState.posts = AppState.posts.filter(p => p.id != postId)
+    async deletePost(id) {
+        console.log('id from blah in the post service' + id);
+        const res = await bcwSandbox.delete(`api/posts/${id}`)
+        AppState.posts = AppState.posts.filter(p => p.id != id)
     }
 
     async changePage(url) {

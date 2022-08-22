@@ -18,11 +18,11 @@
                     <img :src="post.img" alt="" height="100">
                 </div>
                 <div v-if="post.creator.id == account.id">
-                    <button @click="deletePost">Delete</button>
+                    <button @click="deletePost(post.id)">Delete</button>
                 </div>
                 <div>
                     <i class="mdi mdi-heart selectable">
-                        <!-- {{posts.likes.length}} -->
+                        {{ post.likes.length }}
                     </i>
                 </div>
             </div>
@@ -31,7 +31,6 @@
 
 
 </template>
-
 
 
 
@@ -54,11 +53,11 @@ export default {
     setup() {
         return {
             account: computed(() => AppState.account),
-            async deletePost(post) {
+            async deletePost(id) {
                 try {
                     const yes = await Pop.confirm('Delete the post?')
                     if (!yes) { return }
-                    await postsService.deletePost(post.id)
+                    await postsService.deletePost(id)
                 } catch (error) {
                     logger.error('[Deleting Post]', error)
                     Pop.error(error)

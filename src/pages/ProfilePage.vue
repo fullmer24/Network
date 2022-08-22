@@ -2,14 +2,14 @@
   <div class="right-bar p-2 bar">
     <div v-for="c in content" :key="c.id">
       <ContentCard :content="c" />
-    </div>div>
+    </div>
     <p>test</p>
   </div>
   <div class="profile-page" v-if="profile">
     <div class="cover-img">
-      <div class="position-absolute " style="right:0" v-if="profile.id == account.id">
+      <!-- <div class="position-absolute " style="right:0" v-if="profile.id == account.id">
         <router-link class="btn square btn-warning " :to="{ name: 'Account' }">Edit Account</router-link>
-      </div>
+      </div> -->
       <img :src="profile.picture" alt="" height="120">
       <h3>{{ profile.name }}</h3>
       <p>{{ profile.bio }}</p>
@@ -20,16 +20,16 @@
     </div>
     <div class="container">
       <div class="row">
-        <div class="mx-auto my-3 col-md-10" v-for="p in posts" :key="p.id">
+        <div class="col-md-7" v-for="p in posts" :key="p.id">
           <PostCard :post="p" />
         </div>
       </div>
-    </div>
-    <div class="d-flex justify-content-around my-3">
-      <button class="btn btn-info" @click="changePage(prevPage)" v-if="prevPage > 1">
-        Previous
-      </button>
-      <button class="btn btn-info" @click="changePage(nextPage)">Next</button>
+      <div class="d-flex justify-content-around my-3">
+        <button class="btn btn-info" @click="changePage(prevPage)" :disabled="!prevPage">
+          Previous
+        </button>
+        <button class="btn btn-info" @click="changePage(nextPage)" :disabled="!nextPage">Next</button>
+      </div>
     </div>
 
   </div>
@@ -55,6 +55,7 @@ export default {
     const route = useRoute();
     async function getPostsByCreatorId() {
       try {
+        console.log('here')
         await postsService.getPostsByCreatorId(route.params.profileId);
       }
       catch (error) {
@@ -75,7 +76,7 @@ export default {
         await profilesService.getProfileById(route.params.profileId);
       }
       catch (error) {
-        logger.error("[GettingProfile]", error);
+        logger.error("[Getting Profile]", error);
         Pop.error(error);
         router.push({ name: "Home" });
       }
@@ -89,7 +90,7 @@ export default {
       account: computed(() => AppState.account),
       profile: computed(() => AppState.activeProfile),
       cover: computed(() => `url(${AppState.activeProfile?.coverImg || "https://cdn.pixabay.com/photo/2017/07/16/17/33/background-2509983_1280.jpg"})`),
-      posts: computed(() => AppState.profilePosts),
+      posts: computed(() => AppState.posts),
       async changePage(url) {
         try {
           await postsService.changePage(url)
