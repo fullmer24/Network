@@ -2,7 +2,7 @@
     <div class="Content-card card">
         <div class="card-body">
             <img :src="content.square" alt="" height="100">
-            {{ content.square }}
+            {{ content }}
         </div>
     </div>
 </template>

@@ -21,13 +21,7 @@
       <button class="btn btn-info" @click="changePage(nextPage)" :disabled="!nextPage">Next</button>
     </div>
   </div>
-
 </template>
-
-
-
-
-
 
 <script>
 import { computed } from '@vue/reactivity';

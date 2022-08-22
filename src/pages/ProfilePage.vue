@@ -60,14 +60,6 @@ export default {
         Pop.error(error);
       }
     }
-    async function getPosts(page) {
-      try {
-        await postsService.getPosts(page)
-      } catch (error) {
-        logger.error('Getting posts', error)
-        Pop.error(error)
-      }
-    }
     async function getProfileById() {
       try {
         await profilesService.getProfileById(route.params.profileId);

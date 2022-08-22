@@ -28,15 +28,7 @@
             </div>
         </div>
     </div>
-
-
 </template>
-
-
-
-
-
-
 
 <script>
 import { computed } from '@vue/reactivity';
@@ -67,16 +59,6 @@ export default {
     },
 };
 </script>
-
-
-
-
-
-
-
-
-
-
 
 <style lang="scss" scoped>
 .post-card {

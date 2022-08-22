@@ -11,7 +11,6 @@
     </div>
 </template>
 
-
 <script>
 import { ref } from '@vue/reactivity'
 import { postsService } from '../services/PostsService.js'
