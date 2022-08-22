@@ -7,9 +7,9 @@
   </div>
   <div class="profile-page" v-if="profile">
     <div class="cover-img">
-      <!-- <div class="position-absolute " style="right:0" v-if="profile.id == account.id">
+      <div class="position-absolute " style="right:0" v-if="profile.id == account.id">
         <router-link class="btn square btn-warning " :to="{ name: 'Account' }">Edit Account</router-link>
-      </div> -->
+      </div>
       <img :src="profile.picture" alt="" height="120">
       <h3>{{ profile.name }}</h3>
       <p>{{ profile.bio }}</p>
@@ -31,13 +31,11 @@
         <button class="btn btn-info" @click="changePage(nextPage)" :disabled="!nextPage">Next</button>
       </div>
     </div>
-
   </div>
   <div v-else>
     Profile Coming<i class="mdi mdi-spin mdi-star"></i>
   </div>
 </template>
-
 
 <script>
 import { computed } from '@vue/reactivity';
@@ -55,7 +53,6 @@ export default {
     const route = useRoute();
     async function getPostsByCreatorId() {
       try {
-        console.log('here')
         await postsService.getPostsByCreatorId(route.params.profileId);
       }
       catch (error) {
@@ -82,9 +79,8 @@ export default {
       }
     }
     onMounted(() => {
-      getPosts();
-      getProfileById();
-      getPostsByCreatorId();
+      getProfileById(route.params.profileId);
+      getPostsByCreatorId(route.params.profileId);
     });
     return {
       account: computed(() => AppState.account),
@@ -105,6 +101,7 @@ export default {
   components: { PostCard }
 }
 </script>
+
 <style lang="scss" scoped>
 .cover-img {
   height: 300px;

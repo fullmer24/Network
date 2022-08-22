@@ -12,8 +12,7 @@ const routes = [
     component: loadPage('HomePage')
   },
   {
-    // TODO add /:profileId
-    path: '/profile',
+    path: '/profile/:profileId?',
     name: 'Profile',
     component: loadPage('ProfilePage')
   },

@@ -6,7 +6,6 @@ import { bcwSandbox } from "./AxiosService.js"
 class PostsService {
     async getPosts() {
         const res = await bcwSandbox.get('api/posts')
-        // logger.log("post data", res.data)
         AppState.posts = res.data.posts.map(p => new Post(p))
         AppState.nextPage = res.data.older
         AppState.prevPage = res.data.newer
@@ -14,10 +13,8 @@ class PostsService {
 
     async getPostsByCreatorId(creatorId) {
         const res = await bcwSandbox.get('api/profiles/' + creatorId + '/Posts')
-        // console.log(res.data)
         AppState.posts = res.data.posts.map(p => new Post(p))
         console.log(AppState.posts)
-        // res.data.find or filter (p => new Post(p))
     }
 
     async createPost(postData) {
@@ -32,7 +29,6 @@ class PostsService {
     }
 
     async deletePost(id) {
-        console.log('id from blah in the post service' + id);
         const res = await bcwSandbox.delete(`api/posts/${id}`)
         AppState.posts = AppState.posts.filter(p => p.id != id)
     }
@@ -46,12 +42,8 @@ class PostsService {
     }
 
     async searchPosts(searchTerm) {
-        const res = await bcwSandbox.get('/search/posts', {
-            params: {
-                query: searchTerm
-            }
-        })
-        AppState.posts = res.data.posts.map(p => new Post(p))
+        const res = await bcwSandbox.get(`api/posts?query=${searchTerm}`)
+        AppState.posts = res.data.posts
     }
 }
 
