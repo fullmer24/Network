@@ -15,20 +15,28 @@
                 <input type="url" class="form-control" v-model="editable.coverImg" required name="coverImg">
             </div>
             <div>
-                <label for="coverImg">Email:</label>
+                <label for="email">Email:</label>
                 <input type="string" class="form-control" v-model="editable.email" required name="email">
             </div>
             <div>
-                <label for="coverImg">GitHub:</label>
+                <label for="github">GitHub:</label>
                 <input type="string" class="form-control" v-model="editable.github" name="github">
             </div>
             <div>
-                <label for="coverImg">linkedin:</label>
+                <label for="linkedin">linkedin:</label>
                 <input type="string" class="form-control" v-model="editable.linkedin" name="linkedin">
             </div>
             <div>
-                <label for="coverImg">Class:</label>
+                <label for="class">Class:</label>
                 <input type="string" class="form-control" v-model="editable.class" required name="class">
+            </div>
+            <div>
+                <label for="graduated">Graduated:</label>
+                <input type="string" class="form-control" v-model="editable.graduated" required name="graduated">
+            </div>
+            <div>
+                <label for="resume">Resume:</label>
+                <input type="string" class="form-control" v-model="editable.resume" required name="resume">
             </div>
             <div>
                 <label for="bio">Bio:</label>

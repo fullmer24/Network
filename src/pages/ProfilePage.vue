@@ -5,17 +5,19 @@
     </div>
   </div>
   <div class="profile-page" v-if="profile">
-    <div class="cover-img">
+    <div class="cover-img text-dark">
       <div class="position-absolute " style="right:0" v-if="profile.id == account.id">
-        <router-link class="btn square btn-warning " :to="{ name: 'Account' }">Edit Account</router-link>
+        <router-link class="btn square btn-warning" :to="{ name: 'Account' }">Edit Account</router-link>
       </div>
       <img :src="profile.picture" alt="" height="120">
       <h3>{{ profile.name }}</h3>
+      <p>{{ profile.email }}</p>
       <p>{{ profile.bio }}</p>
       <p>{{ profile.github }}</p>
       <p>{{ profile.linkedin }}</p>
       <p>{{ profile.class }}</p>
       <p>{{ profile.graduated }}</p>
+      <p>{{ profile.resume }}</p>
     </div>
     <div class="container">
       <div class="row">
@@ -97,7 +99,7 @@ export default {
 
 <style lang="scss" scoped>
 .cover-img {
-  height: 300px;
+  height: 600px;
   background-position: center;
   background-attachment: fixed;
   background-size: cover;
@@ -106,4 +108,8 @@ export default {
   color: aliceblue;
   background-image: v-bind(cover);
 }
+
+// .profile-page {
+//   height: 75vh;
+// }
 </style>

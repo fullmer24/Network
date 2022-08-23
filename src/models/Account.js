@@ -6,5 +6,6 @@ export class Account {
     this.picture = data.picture
     this.coverImg = data.coverImg
     this.bio = data.bio
+    this.resume = data.resume
   }
 }
