@@ -1,12 +1,12 @@
 <template>
-  <div class="left-bar p-2 bar">
-    <div v-for="c in content" :key="c.id">
-      <ContentCard :content="c" />
-    </div>
-    <!-- <p>test</p> -->
-  </div>
   <div class="container">
     <div class="row">
+      <div>
+        <ContentCard />
+      </div>
+      <!-- <div v-for="c in content" :key="c.id">
+        <ContentCard :content="c" />
+      </div> -->
       <div class="col-md-7">
         <PostForm />
       </div>
@@ -31,10 +31,25 @@ import { postsService } from '../services/PostsService.js';
 import { logger } from '../utils/Logger.js';
 import Pop from '../utils/Pop.js';
 import ContentCard from '../components/ContentCard.vue';
+import { contentsService } from '../services/ContentsService.js';
 
 export default {
   name: "home",
   setup() {
+    async function getContent(url) {
+      try {
+        await contentsService.getContent(url);
+      }
+      catch (error) {
+        logger.error("Getting content homePage", error);
+        Pop.error(error);
+      }
+    }
+    onMounted(() => {
+      getContent();
+    });
+
+
     async function getPosts(page) {
       try {
         await postsService.getPosts(page);

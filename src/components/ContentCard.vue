@@ -1,8 +1,8 @@
 <template>
     <div class="Content-card card">
-        <div class="card-body">
-            <img :src="content.square" alt="" height="100">
-            {{ content }}
+        <div class="card-body" v-for="c in content">
+            <img :src="c.square" alt="" height="100">
+
         </div>
     </div>
 </template>
@@ -28,12 +28,13 @@ export default {
                 Pop.error(error)
             }
         }
-        getContent()
+        // onMounted(() => {
+        //     getContent()
+        // })
         return {
-            content: computed(() => AppState.content),
-            getContent,
-        };
-    },
+            content: computed(() => AppState.content)
+        }
+    }
 };
 </script>
 
